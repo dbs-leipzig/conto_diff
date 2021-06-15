@@ -1,0 +1,148 @@
+<diffConfig>
+
+<types>
+	<primType name="accession"/>
+	<primType name="rel_type"/>
+	<primType name="att_name"/>
+	<primType name="att_value"/>
+	
+	<type name="Concept" baseType="Object">
+		<contains name="accession"/>
+	</type>
+	<type name="Relationship" baseType="Association">
+		<contains name="accession"/>
+		<contains name="rel_type"/>
+		<contains name="accession"/>
+	</type>
+	<type name="Attribute" baseType="Attribute">
+		<contains name="accession"/>
+		<contains name="att_name"/>
+		<contains name="att_value"/>
+	</type>
+</types>
+
+<changeActions>
+
+<changeAction id="1" name="addC" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="2" name="delC" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="3" name="mapC" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="4" name="addA" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="att_name" multipleValues="false"/>
+	<inputParameter type="att_value" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="5" name="delA" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="att_name" multipleValues="false"/>
+	<inputParameter type="att_value" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="6" name="mapA" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="att_name" multipleValues="false"/>
+	<inputParameter type="att_value" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="att_name" multipleValues="false"/>
+	<inputParameter type="att_value" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="7" name="addR" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="rel_type" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="8" name="delR" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="rel_type" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="9" name="mapR" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="rel_type" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="rel_type" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="10" name="move" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="rel_type" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="true"/>
+	<inputParameter type="accession" multipleValues="true"/>
+</changeAction>
+
+<changeAction id="11" name="toObsolete" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="12" name="revokeObsolete" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="13" name="merge" level="2">
+	<inputParameter type="accession" multipleValues="true"/>
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="14" name="split" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="true"/>
+</changeAction>
+
+<changeAction id="15" name="chgAttValue" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="att_name" multipleValues="false"/>
+	<inputParameter type="att_value" multipleValues="true"/>
+	<inputParameter type="att_value" multipleValues="true"/>
+</changeAction>
+
+<changeAction id="16" name="addLeaf" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="17" name="addInner" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="18" name="addSubGraph" level="3">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="true"/>
+</changeAction>
+
+<changeAction id="19" name="delLeaf" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="20" name="delInner" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="21" name="idEvent" level="1">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="22" name="substitute" level="2">
+	<inputParameter type="accession" multipleValues="false"/>
+	<inputParameter type="accession" multipleValues="false"/>
+</changeAction>
+
+<changeAction id="23" name="dummy"/>
+
+</changeActions>
+
+</diffConfig>

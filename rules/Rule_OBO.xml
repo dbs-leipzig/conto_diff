@@ -1,0 +1,976 @@
+<rules>
+
+<rule description="Generates merge actions based on n:1 correspondences" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="mapC" checkOnly="false">
+		<inputVariable>C_1_From</inputVariable>
+		<inputVariable>C_1_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="mapC" checkOnly="false">
+		<inputVariable>C_2_From</inputVariable>
+		<inputVariable>C_2_To</inputVariable>
+	</inputAction>
+	<inputAction number="3" negation="true" name="mapC" checkOnly="true">
+		<inputVariable>C_3_From</inputVariable>
+		<inputVariable>C_3_To</inputVariable>
+	</inputAction>
+	<inputAction number="4" negation="true" name="mapC" checkOnly="true">
+		<inputVariable>C_4_From</inputVariable>
+		<inputVariable>C_4_To</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1_From" leftSideConstant="false" rightSide="C_3_From" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_1_To" leftSideConstant="false" rightSide="C_2_To" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_1_From" leftSideConstant="false" rightSide="C_2_From" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_2_From" leftSideConstant="false" rightSide="C_4_From" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_1_To" leftSideConstant="false" rightSide="C_3_To" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_2_To" leftSideConstant="false" rightSide="C_4_To" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="merge">
+		<resultVariable>C_1_From</resultVariable>
+		<resultVariable>C_1_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates split actions based on 1:n correspondences" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="mapC" checkOnly="false">
+		<inputVariable>C_1_From</inputVariable>
+		<inputVariable>C_1_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="mapC" checkOnly="false">
+		<inputVariable>C_2_From</inputVariable>
+		<inputVariable>C_2_To</inputVariable>
+	</inputAction>
+	<inputAction number="3" negation="true" name="mapC" checkOnly="true">
+		<inputVariable>C_3_From</inputVariable>
+		<inputVariable>C_3_To</inputVariable>
+	</inputAction>
+	<inputAction number="4" negation="true" name="mapC" checkOnly="true">
+		<inputVariable>C_4_From</inputVariable>
+		<inputVariable>C_4_To</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="unequal" leftSide="C_1_From" leftSideConstant="false" rightSide="C_3_From" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_1_To" leftSideConstant="false" rightSide="C_2_To" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_1_From" leftSideConstant="false" rightSide="C_2_From" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_2_From" leftSideConstant="false" rightSide="C_4_From" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_1_To" leftSideConstant="false" rightSide="C_3_To" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_2_To" leftSideConstant="false" rightSide="C_4_To" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="split">
+		<resultVariable>C_1_From</resultVariable>
+		<resultVariable>C_1_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates substitute actions based on 1:1 correspondences" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="mapC" checkOnly="false">
+		<inputVariable>C_1_From</inputVariable>
+		<inputVariable>C_1_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="true" name="mapC" checkOnly="true">
+		<inputVariable>C_2_From</inputVariable>
+		<inputVariable>C_2_To</inputVariable>
+	</inputAction>
+	<inputAction number="3" negation="true" name="mapC" checkOnly="true">
+		<inputVariable>C_3_From</inputVariable>
+		<inputVariable>C_3_To</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="unequal" leftSide="C_1_From" leftSideConstant="false" rightSide="C_1_To" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_1_From" leftSideConstant="false" rightSide="C_2_From" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_1_To" leftSideConstant="false" rightSide="C_2_To" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_1_To" leftSideConstant="false" rightSide="C_3_To" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_1_From" leftSideConstant="false" rightSide="C_3_From" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="substitute">
+		<resultVariable>C_1_From</resultVariable>
+		<resultVariable>C_1_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+<rule description="Generates move actions based on the deletion and addition of relationships" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="delR" checkOnly="false">
+		<inputVariable>C_1_Source</inputVariable>
+		<inputVariable>R_1</inputVariable>
+		<inputVariable>C_1_Target</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1_Source" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="R_1" leftSideConstant="false" rightSide="R_2" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="C_1_Target" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="move">
+		<resultVariable>C_1_Source</resultVariable>
+		<resultVariable>R_1</resultVariable>
+		<resultVariable>C_1_Target</resultVariable>
+		<resultVariable>C_2_Target</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates actions that insert a leaf object into the data source" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="addC" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="true" name="addR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+	<constraint type="in" leftSide="R_2" leftSideConstant="false" rightSide="'is_a','part_of'" rightSideConstant="true"/>
+</constraints>
+<result>
+	<resultAction name="addLeaf">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+
+<rule description="Generates actions that deletes a leaf object into the data source" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="delC" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="true" name="delR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="delLeaf">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates actions that insert an inner object into the data source" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="addC" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+	<constraint type="in" leftSide="R_2" leftSideConstant="false" rightSide="'is_a','part_of'" rightSideConstant="true"/>
+</constraints>
+<result>
+	<resultAction name="addInner">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates actions that delete an inner object from the data source" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="delC" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="delInner">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates actions that insert a complete subtree">
+<input>
+	<inputAction number="1" negation="false" name="addLeaf" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="true">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+	<inputAction number="3" negation="false" name="addInner" checkOnly="false">
+		<inputVariable>C_3</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_2_Target" leftSideConstant="false" rightSide="C_3" rightSideConstant="false"/>
+	<constraint type="in" leftSide="R_2" leftSideConstant="false" rightSide="'is_a','part_of'" rightSideConstant="true"/>
+</constraints>
+<result>
+	<resultAction name="addSubGraph">
+		<resultVariable>C_3</resultVariable>
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates actions that insert a complete subtree">
+<input>
+	<inputAction number="1" negation="false" name="addInner" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="true">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+	<inputAction number="3" negation="false" name="addSubGraph" checkOnly="false">
+		<inputVariable>C_3_Root</inputVariable>
+		<inputVariable>C_3_Child</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_2_Source" leftSideConstant="false" rightSide="C_3_Root" rightSideConstant="false"/>
+	<constraint type="in" leftSide="R_2" leftSideConstant="false" rightSide="'is_a','part_of'" rightSideConstant="true"/>
+</constraints>
+<result>
+	<resultAction name="addSubGraph">
+		<resultVariable>C_1</resultVariable>
+		<resultVariable>C_3_Root</resultVariable>
+	</resultAction>
+	<reduction>
+		<reduceAction number="3"/>
+	</reduction>
+</result>
+</rule>
+
+<rule description="Generates actions that insert a complete subtree">
+<input>
+	<inputAction number="1" negation="false" name="addInner" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="true">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+	<inputAction number="3" negation="false" name="addSubGraph" checkOnly="false">
+		<inputVariable>C_3_Root</inputVariable>
+		<inputVariable>C_3_Child</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_2_Source" leftSideConstant="false" rightSide="C_3_Root" rightSideConstant="false"/>
+	<constraint type="in" leftSide="R_2" leftSideConstant="false" rightSide="'is_a','part_of'" rightSideConstant="true"/>
+</constraints>
+<result>
+	<resultAction name="addSubGraph">
+		<resultVariable>C_1</resultVariable>
+		<resultVariable>C_3_Child</resultVariable>
+	</resultAction>
+	<reduction>
+		<reduceAction number="3"/>
+	</reduction>
+</result>
+</rule>
+
+<rule description="Assigns attribute additions to leaf objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="addLeaf" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="addLeaf">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute deletions to leaf objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="delLeaf" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="delLeaf">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute additions to inner objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="addInner" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="addInner">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute deletions to inner objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="delInner" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="delInner">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+
+<rule description="Assigns association additions to leaf objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="addLeaf" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="addLeaf">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns association deletions to leaf objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="delLeaf" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="delLeaf">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns association additions to inner objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="addInner" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="addInner">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns association deletions to inner objects" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="delInner" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="delInner">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute deletions for merges" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="merge" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_From" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="merge">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute additions for merges" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="merge" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_To" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="merge">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns association deletions for merges" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="merge" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_From" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="merge">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns association additions for splits" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="split" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_To" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="split">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute additions for splits" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="split" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_To" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="split">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute deletions for splits" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="split" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_From" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="split">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns relationship additions for substitutes" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="substitute" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_To" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="substitute">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns relationship deletions for substitutes" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="substitute" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delR" checkOnly="false">
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_From" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="substitute">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute additions for substitutes" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="substitute" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_To" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="substitute">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns attribute deletions for substitutes" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="substitute" checkOnly="false">
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="delA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_From" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="substitute">
+		<resultVariable>C_From</resultVariable>
+		<resultVariable>C_To</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates chgAttValue actions based on addition and deletion of an attribute" maxRound="1">
+<input>
+	<inputAction number="1" negation="false" name="delA" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>A_1</inputVariable>
+		<inputVariable>V_1</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addA" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="A_1" leftSideConstant="false" rightSide="A_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="chgAttValue">
+		<resultVariable>C_1</resultVariable>
+		<resultVariable>A_1</resultVariable>
+		<resultVariable>V_1</resultVariable>
+		<resultVariable>V_2</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+
+<!--
+<rule description="Generates chgAttValue actions based on the correspondence of two attributes">
+<input>
+	<inputAction number="1" negation="false" name="mapAtt" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>A_1</inputVariable>
+		<inputVariable>V_1</inputVariable>
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="A_1" leftSideConstant="false" rightSide="A_2" rightSideConstant="false"/>
+	<constraint type="unequal" leftSide="V_1" leftSideConstant="false" rightSide="V_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="chgAttValue">
+		<resultVariable>C_1</resultVariable>
+		<resultVariable>A_1</resultVariable>
+		<resultVariable>V_1</resultVariable>
+		<resultVariable>V_2</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+-->
+
+
+<rule description="Generates toObsolete actions" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="chgAttValue" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>A_1</inputVariable>
+		<inputVariable>V_1</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="A_1" leftSideConstant="false" rightSide="isObsolete" rightSideConstant="true"/>
+	<constraint type="equal" leftSide="V_1" leftSideConstant="false" rightSide="false" rightSideConstant="true"/>
+	<constraint type="equal" leftSide="V_2" leftSideConstant="false" rightSide="true" rightSideConstant="true"/>
+</constraints>
+<result>
+	<resultAction name="toObsolete">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Generates revokeObsolete actions" maxRound="2">
+<input>
+	<inputAction number="1" negation="false" name="chgAttValue" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>A_1</inputVariable>
+		<inputVariable>V_1</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="A_1" leftSideConstant="false" rightSide="isObsolete" rightSideConstant="true"/>
+	<constraint type="equal" leftSide="V_1" leftSideConstant="false" rightSide="true" rightSideConstant="true"/>
+	<constraint type="equal" leftSide="V_2" leftSideConstant="false" rightSide="false" rightSideConstant="true"/>
+</constraints>
+<result>
+	<resultAction name="revokeObsolete">
+		<resultVariable>C_1</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns moves to toObsolete" maxRound="3">
+<input>
+	<inputAction number="1" negation="false" name="move" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>R_1</inputVariable>
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="toObsolete" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="toObsolete">
+		<resultVariable>C_2</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<rule description="Assigns moves to revokeObsolete" maxRound="3">
+<input>
+	<inputAction number="1" negation="false" name="move" checkOnly="false">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>R_1</inputVariable>
+		<inputVariable>C_From</inputVariable>
+		<inputVariable>C_To</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="revokeObsolete" checkOnly="false">
+		<inputVariable>C_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="revokeObsolete">
+		<resultVariable>C_2</resultVariable>
+	</resultAction>
+	<reduction/>
+</result>
+</rule>
+
+<!--
+<rule description="Generates actions that insert a complete subtree">
+<input>
+	<inputAction number="1" negation="false" name="addSubTree">
+		<inputVariable>C_1_Root</inputVariable>
+		<inputVariable>C_1_Child</inputVariable>
+	</inputAction>
+	<inputAction number="2" negation="false" name="addSubTree">
+		<inputVariable>C_2_Root</inputVariable>
+		<inputVariable>C_2_Child</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1_Child" leftSideConstant="false" rightSide="C_2_Root" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="addSubTree">
+		<resultVariable>C_1_Root</resultVariable>
+		<resultVariable>C_2_Child</resultVariable>
+	</resultAction>
+	<reduction>
+		<reduceAction number="1"/>
+		<reduceAction number="2"/>
+	</reduction>
+</result>
+</rule>
+-->
+
+<!--
+<rule description="Dummy function to remove all correspondences linking exactly the same attributes">
+<input>
+	<inputAction number="1" negation="false" name="mapAtt">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>A_1</inputVariable>
+		<inputVariable>V_1</inputVariable>
+		<inputVariable>C_2</inputVariable>
+		<inputVariable>A_2</inputVariable>
+		<inputVariable>V_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="A_1" leftSideConstant="false" rightSide="A_2" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="V_1" leftSideConstant="false" rightSide="V_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="dummy"/>
+	<reduction>
+		<reduceAction number="1"/>
+	</reduction>
+</result>
+</rule>
+
+<rule description="Dummy function to remove all correspondences linking exactly the same objects">
+<input>
+	<inputAction number="1" negation="false" name="mapObj">
+		<inputVariable>C_1</inputVariable>
+		<inputVariable>C_2</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1" leftSideConstant="false" rightSide="C_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="dummy"/>
+	<reduction>
+		<reduceAction number="1"/>
+	</reduction>
+</result>
+</rule>
+
+<rule description="Dummy function to remove all correspondences linking exactly the same relationships">
+<input>
+	<inputAction number="1" negation="false" name="mapAss">
+		<inputVariable>C_1_Source</inputVariable>
+		<inputVariable>R_1</inputVariable>
+		<inputVariable>C_1_Target</inputVariable>
+		<inputVariable>C_2_Source</inputVariable>
+		<inputVariable>R_2</inputVariable>
+		<inputVariable>C_2_Target</inputVariable>
+	</inputAction>
+</input>
+<constraints>
+	<constraint type="equal" leftSide="C_1_Source" leftSideConstant="false" rightSide="C_2_Source" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="C_1_Target" leftSideConstant="false" rightSide="C_2_Target" rightSideConstant="false"/>
+	<constraint type="equal" leftSide="R_1" leftSideConstant="false" rightSide="R_2" rightSideConstant="false"/>
+</constraints>
+<result>
+	<resultAction name="dummy"/>
+	<reduction>
+		<reduceAction number="1"/>
+	</reduction>
+</result>
+</rule>
+-->
+</rules>
