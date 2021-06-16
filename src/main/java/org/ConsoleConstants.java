@@ -32,6 +32,5 @@ public class ConsoleConstants {
   public static final String STATISTIC = "s";
 
 
-
-
+    public static final String OUTPUT_FILE = "o";
 }
